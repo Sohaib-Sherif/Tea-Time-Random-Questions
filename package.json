@@ -9,7 +9,10 @@
   },
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^2.6.11"
+    "odometer": "^0.4.8",
+    "v-odometer": "^2.0.1",
+    "vue": "^2.6.11",
+    "vue-odometer": "^1.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",

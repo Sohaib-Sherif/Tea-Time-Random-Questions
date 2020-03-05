@@ -1,58 +1,73 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+<div>
+
+    <img alt="Vue logo" src="../assets/logo.png"  @click="getNumber" style="cursor: pointer">
+<div class="container">
+  <!-- <button class="b myButton"> hello </button> -->
+  <odometer class="c" :value="number" theme="digital" format="(dd)"></odometer>
+
+</div>
+<h1> {{ q }} </h1>
+</div>
 </template>
 
 <script>
+
+import odometer from 'vue-odometer';
+import 'odometer/themes/odometer-theme-digital.css';
+
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  components: {
+      odometer
+    },
+  data: function () {
+   return {
+    number:0,
+    numbers: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+    q: '',
+    qs: [
+      'Name one person in the technology industry that inspires you?',
+      'What is your favorite technology brand?',
+      'What is the first thing or word that pops to your mind when you hear programming?',
+      'What is one electronic device that you can not live without?',
+      "Name one application in your opinion that made peoples life easier",
+      'Do you think Artificial intelligence (A.I.) will replace humans one day?',
+      'If you could choose one company to work for, what company would you choose?',
+      'How do you think further technological advances will impact your job?',
+      'What qualities do you think are the most important in a programmer?',
+      'What are your favorite and least favorite technology products, and why?',
+      'Name one invention that is ground breaking in your opinion',
+      'If you have been funded, what would your startup be about?',
+      'What is one movie that you think anticipates the future?',
+      'What is your opinion about the current big five companies? and their use of data and privacy?'
+    ],
+   }
+  },
+  methods: {
+    getNumber() {
+      let n = Math.floor(Math.random() * this.qs.length);
+      this.q = this.qs[n];
+      this.number = this.numbers[Math.floor(Math.random() * this.numbers.length)];
+      this.numbers = this.numbers.filter(n => n != this.number);
+    },
+  },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+
+.container {
+  display: flex;
+    flex-direction: column;
+    width:180px;
+    margin:auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.c {
+  font-size: 4.7em;
+    margin-top: 80px;
+
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
